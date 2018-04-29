@@ -16,21 +16,26 @@ function Catalogo (props) {
 			<div className="contenedor">
 				{
 					props.products.map((element)=> {
+						console.log(element)
 						return (
 							<CSSTransitionGroup
 								transitionName="fade"
 								transitionEnterTimeout={500}
 								transitionLeave={false}
+								key={element.id}
 							>
 								<Producto key={element.id} nombre={element.nombre} image={element.image} handleClick={props.handleProductClick}/> 
 							</CSSTransitionGroup>
 						)
 					})
 				}
-				<div onClick={props.handleMoreClick} className="ver">
-					<i className="material-icons">expand_more</i>
-					<p>Ver mas</p>
-				</div>
+				{
+					!(props.products.length === props.limite) &&
+					<div onClick={props.handleMoreClick} className="ver">
+						<i className="material-icons">expand_more</i>
+						<p>Ver mas</p>
+					</div>
+				}
 			</div>
 		</section>
 	)

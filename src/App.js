@@ -23,6 +23,7 @@ class App extends Component {
       product: '',
       servicio: '',
       cantidad: 3,
+      limite: Api.length,
       busqueda: '',
     }
     this.setRef = element => {
@@ -36,6 +37,7 @@ class App extends Component {
     }
     this.handleSliderLeft = this.handleSliderLeft.bind(this)
     this.handleSliderRight = this.handleSliderRight.bind(this)
+    this.handleSliderPick = this.handleSliderPick.bind(this)
     this.handleProductClick = this.handleProductClick.bind(this)
     this.handleServicioClick = this.handleServicioClick.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -67,6 +69,13 @@ class App extends Component {
       }
   }
 
+  handleSliderPick (e) {
+    this.setState({
+      sliderIndex: Number(e.target.id),
+    })
+    this.setTimeForSlider(5000)
+  }
+
   handleProductClick (element) {
     console.log(element.target.id)
     this.setState({
@@ -89,6 +98,14 @@ class App extends Component {
     this.setState((prevState, props) => ({
       cantidad: prevState.cantidad + 3,
     }));
+    this.setTimeForSlider(10000)
+  }
+
+  setTimeForSlider (time) {
+    // setTimeout((e) => {
+    //   console.log('cambio')
+    //   this.handleSliderLeft()    
+    // }, time)
   }
 
   prepareProducts () {
@@ -114,17 +131,22 @@ class App extends Component {
       busqueda: element.target.value
     })
   }
-
+  componentDidMount () {
+    this.setTimeForSlider(5000)
+  }
+  componentDidUpdate () {
+    this.setTimeForSlider(5000)
+  }
 
   render() {
     let list = this.prepareProducts()
     return (
       <Layout>
           <Header handleClick={this.openModal}/>
-          <Slider index={this.state.sliderIndex} handleLeft={this.handleSliderLeft} handleRight={this.handleSliderRight}/>
+          <Slider handleSliderPick={this.handleSliderPick} index={this.state.sliderIndex} handleLeft={this.handleSliderLeft} handleRight={this.handleSliderRight}/>
           <Descripcion/>
           <Servicios handleClick={this.handleServicioClick}/>
-          <Catalogo handleSearch={this.handleSearch} products={list} handleProductClick={this.handleProductClick} handleMoreClick={this.handleMoreClick} />
+          <Catalogo limite={this.state.limite} handleSearch={this.handleSearch} products={list} handleProductClick={this.handleProductClick} handleMoreClick={this.handleMoreClick} />
           <Contacto product={this.state.product} service={this.state.servicio}/>
           <Footer />
           <Modal handleClick={this.closeModal} setRef={this.setRef} />

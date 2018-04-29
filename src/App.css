@@ -233,6 +233,28 @@ section {
   visibility: hidden;
 }
 
+.indicadores {
+  position: absolute;
+  bottom: 20px;
+  right: 5%;
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 200;
+}
+
+.pick {
+  background: rgba(200,50,50,.4) !important;
+}
+
+.indicador {
+  width: 15px;
+  height: 15px;
+  background: rgba(255,255,255,.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 /*Descripcion*/
 #descripcion{
   height: 100vh;
@@ -707,6 +729,8 @@ footer h3 {
   overflow:auto;
   background: white;
 }
+
+
 
 /* Productos */
 

@@ -23,8 +23,8 @@ class Form extends React.Component {
 				<input type="text" placeholder="Telefono" name="telefono" id="telefono" pattern="^[0-9\-\+]{9,15}$"/>
 				<label htmlFor="asunto">Asunto</label>
 				<select name="asunto" id="asunto" name="asunto" defaultValue="Contacto">
-					<option selected={(this.props.service)? 'true':'false'}>Servicios</option>
-					<option selected={(this.props.product)? 'true':'false'}>Productos</option>
+					<option defaultValue={(this.props.service)? 'true':'false'}>Servicios</option>
+					<option defaultValue={(this.props.product)? 'true':'false'}>Productos</option>
 					<option >Contacto</option>
 				</select>
 				<label htmlFor="mensaje">Mensaje</label>
